@@ -1,0 +1,14 @@
+program
+	integer zahl1;
+	string text1, text2;
+begin
+	zahl1 := 13;
+	if text1 = text2 then
+		zahl1 := zahl1 * 2;
+	else
+		while zahl1 < 52 do
+			zahl1 := zahl1 + 1;
+		od
+		
+	fi
+end
