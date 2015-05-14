@@ -1,8 +1,19 @@
 grammar miniP_AST;
 
 options {
-     output=AST;
-     ASTLabelType=CommonTree;
+    output=AST;
+    ASTLabelType=CommonTree;
+}
+
+tokens {
+    VAR;
+    PROG;
+    DECL;
+    IFELSE;
+    WHILE;
+    BLOCK;
+    SLIST;
+    FUNC;
 }
 
 // START:rules
@@ -10,23 +21,42 @@ prog	:	PROGRAM
 		  declarations
 		BEGINSYM
 		  statements
-		ENDSYM;
-
+		ENDSYM -> ^(PROG declarations+ statements);
 		
-declarations:	 (TYPESYM ID (COMMA ID)* SEMICOLON)+;
-statements:	 ((assignment | ifstmt | whilestmt | functions) SEMICOLON)+;
+declarations
+	:	(variable (COMMA ID)* SEMICOLON)+ -> ^(DECL variable+);
 	
-assignment:	ID ASSIGNSYM (STRINGSYM | comparision | arith_expression);
+variable
+	:	type ID -> ^(VAR type? ID);
 	
-comparision:	(intsym | realsym | ID) CMP_OPS ( intsym | realsym |ID);
+type	:	TYPESYM;
+	
+statements
+	:	((assignment | ifstmt | whilestmt | functions) SEMICOLON!)+;
+	
+block	:	statements -> ^(BLOCK statements);
+	
+assignment
+	:	ID ASSIGNSYM expr  -> ^(ASSIGNSYM ID expr);
+
+expr
+	:	(STRINGSYM | comparision | arith_expression);
+	
+comparision
+	:	op1= comparable CMP_OPS op2=comparable -> ^(CMP_OPS $op1 $op2);
+
+comparable
+	:	(intsym | realsym | ID);
 
 
 // START:if
-ifstmt:		IFSYM comparision THENSYM
-			statements
+ifstmt
+	:	IFSYM cond=comparision THENSYM
+			ifstat=block
 		(ELSESYM
-			statements)?
-		FISYM;
+			elsestat=block)?
+		FISYM -> ^(IFELSE $cond $ifstat $elsestat);
+		
 		
 IFSYM:	 	'if';
 THENSYM: 	'then';
@@ -36,9 +66,10 @@ FISYM:   	'fi';
 
 
 // START:while
-whilestmt:	WHILESYM comparision DOSYM
-			statements
-		ODSYM;
+whilestmt:	WHILESYM cond=comparision DOSYM
+			block
+		ODSYM -> ^(WHILE $cond block);
+		
 WHILESYM:	'while';
 DOSYM:		'do';		
 ODSYM:		'od';
@@ -48,18 +79,19 @@ ODSYM:		'od';
 // START:function
 functions:	readfunc | printlnfunc;
 
-readfunc:	READSYM RND_BRACK_OPEN ID RND_BRACK_CLOSED;
+readfunc:	READSYM RND_BRACK_OPEN ID RND_BRACK_CLOSED -> ^(FUNC READSYM ID);
 READSYM:	'read';
 
-printlnfunc:	PRINTLNSYM RND_BRACK_OPEN (realsym | intsym | STRINGSYM | ID) RND_BRACK_CLOSED;
+printlnfunc:	PRINTLNSYM RND_BRACK_OPEN func RND_BRACK_CLOSED -> ^(FUNC PRINTLNSYM func);
 PRINTLNSYM:	'println';
+func 	:	 (realsym | intsym | STRINGSYM | ID);
 // END:function
    
    
 // START:arithmetische expression
-arith_expression : term  ( (ADD | SUB) term)*;
-term       : factor  ( (MUL | DIV) factor)*;
-factor     : ((intsym | realsym) | ID | (RND_BRACK_OPEN arith_expression RND_BRACK_CLOSED));
+arith_expression : term  ( (ADD^ | SUB^) term)*;
+term       : factor  ( (MUL^ | DIV^) factor)*;
+factor     : ((intsym | realsym) | ID | (RND_BRACK_OPEN! arith_expression RND_BRACK_CLOSED!));
 // END:arithmetische expression  
    
    
