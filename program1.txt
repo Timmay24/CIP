@@ -1,14 +1,19 @@
 program
 	integer zahl1;
-	string text1, text2;
+	integer zahl2;
+	string text1;
+	string text2;
 begin
 	zahl1 := 13;
 	if text1 = text2 then
 		zahl1 := zahl1 * 2;
+		read(text1);
+		println(-12);
 	else
 		while zahl1 < 52 do
 			zahl1 := zahl1 + 1;
-		od
+			zahl2 := 5 * (2 + 1) - zahl1;
+		od;
 		
-	fi
+	fi;
 end
