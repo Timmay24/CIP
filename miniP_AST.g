@@ -40,9 +40,9 @@ assignment
 	:	ID ASSIGNSYM expr  -> ^(ASSIGNSYM ID expr);
 
 expr
-	:	(STRINGSYM | comparision | arith_expression);
+	:	(STRINGSYM | comparison | arith_expression);
 	
-comparision
+comparison
 	:	op1= comparable CMP_OPS op2=comparable -> ^(CMP_OPS $op1 $op2);
 
 comparable
@@ -51,7 +51,7 @@ comparable
 
 // START:if
 ifstmt
-	:	IFSYM cond=comparision THENSYM
+	:	IFSYM cond=comparison THENSYM
 			ifstat=block
 		(ELSESYM
 			elsestat=block)?
@@ -66,7 +66,7 @@ FISYM:   	'fi';
 
 
 // START:while
-whilestmt:	WHILESYM cond=comparision DOSYM
+whilestmt:	WHILESYM cond=comparison DOSYM
 			block
 		ODSYM -> ^(WHILE $cond block);
 		
