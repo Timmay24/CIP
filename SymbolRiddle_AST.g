@@ -6,7 +6,7 @@ options {
 }
 
 tokens{
-   Problem;
+   NUMBER;
 }
 
 // START:stat
@@ -15,21 +15,23 @@ prog:   symbolRiddle;
 // END:stat
 
 symbolRiddle
-	:	L1=LETTER  AS1=ADDSUB L2=LETTER  EQL L3=LETTER NEWLINE
+	:	L1=number  AS1=ADDSUB L2=number  EQL L3=number NEWLINE
 		AS2=ADDSUB 	      AS3=ADDSUB    AS4=ADDSUB NEWLINE
-		L4=LETTER  AS5=ADDSUB L5=LETTER  EQL L6=LETTER NEWLINE
+		L4=number  AS5=ADDSUB L5=number  EQL L6=number NEWLINE
 		     EQL                  EQL            EQL   NEWLINE
-		L7=LETTER AS6=ADDSUB L8=LETTER EQL L9=LETTER 
-		-> ^(Problem ^(EQL ^($AS1 $L1 $L2) $L3))
-		   ^(Problem ^(EQL ^($AS5 $L4 $L5) $L6))
-		   ^(Problem ^(EQL ^($AS6 $L7 $L8) $L9))
-		   ^(Problem ^(EQL ^($AS2 $L1 $L4) $L7))
-		   ^(Problem ^(EQL ^($AS3 $L2 $L5) $L8))
-		   ^(Problem ^(EQL ^($AS4 $L3 $L6) $L9)); 
+		L7=number AS6=ADDSUB L8=number EQL L9=number 
+		-> ^(EQL ^($AS1 ^(NUMBER $L1) ^(NUMBER $L2)) ^(NUMBER $L3))
+		   ^(EQL ^($AS5 ^(NUMBER $L4) ^(NUMBER $L5)) ^(NUMBER $L6))
+		   ^(EQL ^($AS6 ^(NUMBER $L7) ^(NUMBER $L8)) ^(NUMBER $L9))
+		   ^(EQL ^($AS2 ^(NUMBER $L1) ^(NUMBER $L4)) ^(NUMBER $L7))
+		   ^(EQL ^($AS3 ^(NUMBER $L2) ^(NUMBER $L5)) ^(NUMBER $L8))
+		   ^(EQL ^($AS4 ^(NUMBER $L3) ^(NUMBER $L6)) ^(NUMBER $L9));
+		   
+number: LETTER+ ;
 
 
 // START:tokens
- LETTER :	('A'..'Z')+ ;
+ LETTER :	('A'..'Z') ;
  ADDSUB	:	('+' | '-');
  EQL	:	'=';
  NEWLINE:	'\r'? '\n' ;
