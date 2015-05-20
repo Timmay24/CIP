@@ -6,8 +6,9 @@ options {
 }
 
 tokens {
-    VAR;
     PROG;
+    CONSEQUENCE;
+    ALTERNATIVE;
     DECL;
     IFELSE;
     WHILE;
@@ -24,17 +25,23 @@ prog	:	PROGRAM
 		ENDSYM -> ^(PROG declarations+ statements);
 		
 declarations
-	:	(variable (COMMA ID)* SEMICOLON)+ -> ^(DECL variable+);
+	:	(variable SEMICOLON)+ -> ^(DECL variable+);
 	
 variable
-	:	type ID -> ^(VAR type? ID);
+	:	type ID (COMMA ID)* -> ^(type ID)+;
 	
 type	:	TYPESYM;
 	
 statements
 	:	((assignment | ifstmt | whilestmt | functions) SEMICOLON!)+;
-	
+
 block	:	statements -> ^(BLOCK statements);
+
+consequence	
+	:	statements -> ^(CONSEQUENCE statements);
+
+alternative
+	:	statements -> ^(ALTERNATIVE statements);
 	
 assignment
 	:	ID ASSIGNSYM expr  -> ^(ASSIGNSYM ID expr);
@@ -43,7 +50,7 @@ expr
 	:	(STRINGSYM | comparison | arith_expression);
 	
 comparison
-	:	op1= comparable CMP_OPS op2=comparable -> ^(CMP_OPS $op1 $op2);
+	:	comparable CMP_OPS comparable -> ^(CMP_OPS comparable comparable);
 
 comparable
 	:	(intsym | realsym | ID);
@@ -51,11 +58,11 @@ comparable
 
 // START:if
 ifstmt
-	:	IFSYM cond=comparison THENSYM
-			ifstat=block
+	:	IFSYM comparison THENSYM
+			consequence
 		(ELSESYM
-			elsestat=block)?
-		FISYM -> ^(IFELSE $cond $ifstat $elsestat);
+			alternative)?
+		FISYM -> ^(IFELSE comparison consequence alternative);
 		
 		
 IFSYM:	 	'if';
@@ -66,9 +73,9 @@ FISYM:   	'fi';
 
 
 // START:while
-whilestmt:	WHILESYM cond=comparison DOSYM
+whilestmt:	WHILESYM comparison DOSYM
 			block
-		ODSYM -> ^(WHILE $cond block);
+		ODSYM -> ^(WHILE comparison block);
 		
 WHILESYM:	'while';
 DOSYM:		'do';		
@@ -79,10 +86,10 @@ ODSYM:		'od';
 // START:function
 functions:	readfunc | printlnfunc;
 
-readfunc:	READSYM RND_BRACK_OPEN ID RND_BRACK_CLOSED -> ^(FUNC READSYM ID);
+readfunc:	READSYM RND_BRACK_OPEN ID RND_BRACK_CLOSED -> ^(READSYM ID);
 READSYM:	'read';
 
-printlnfunc:	PRINTLNSYM RND_BRACK_OPEN func RND_BRACK_CLOSED -> ^(FUNC PRINTLNSYM func);
+printlnfunc:	PRINTLNSYM RND_BRACK_OPEN func RND_BRACK_CLOSED -> ^(PRINTLNSYM func);
 PRINTLNSYM:	'println';
 func 	:	 (realsym | intsym | STRINGSYM | ID);
 // END:function
