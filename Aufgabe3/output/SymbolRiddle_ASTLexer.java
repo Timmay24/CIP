@@ -1,4 +1,5 @@
-// $ANTLR 3.4 C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\SymbolRiddle_TreeParser.g 2015-06-07 18:19:50
+// $ANTLR 3.4 C:\\Projects\\CIP\\Aufgabe3\\SymbolRiddle_AST.g 2015-06-08 19:02:31
+package symbolriddle_ast.grammar;
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -6,7 +7,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked"})
-public class SymbolRiddle_TreeParserLexer extends Lexer {
+public class SymbolRiddle_ASTLexer extends Lexer {
     public static final int EOF=-1;
     public static final int ADD=4;
     public static final int EQL=5;
@@ -21,22 +22,22 @@ public class SymbolRiddle_TreeParserLexer extends Lexer {
         return new Lexer[] {};
     }
 
-    public SymbolRiddle_TreeParserLexer() {} 
-    public SymbolRiddle_TreeParserLexer(CharStream input) {
+    public SymbolRiddle_ASTLexer() {} 
+    public SymbolRiddle_ASTLexer(CharStream input) {
         this(input, new RecognizerSharedState());
     }
-    public SymbolRiddle_TreeParserLexer(CharStream input, RecognizerSharedState state) {
+    public SymbolRiddle_ASTLexer(CharStream input, RecognizerSharedState state) {
         super(input,state);
     }
-    public String getGrammarFileName() { return "C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\SymbolRiddle_TreeParser.g"; }
+    public String getGrammarFileName() { return "C:\\Projects\\CIP\\Aufgabe3\\SymbolRiddle_AST.g"; }
 
     // $ANTLR start "LETTER"
     public final void mLETTER() throws RecognitionException {
         try {
             int _type = LETTER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\SymbolRiddle_TreeParser.g:25:8: ( ( 'A' .. 'Z' ) )
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\SymbolRiddle_TreeParser.g:
+            // C:\\Projects\\CIP\\Aufgabe3\\SymbolRiddle_AST.g:40:8: ( ( 'A' .. 'Z' ) )
+            // C:\\Projects\\CIP\\Aufgabe3\\SymbolRiddle_AST.g:
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z') ) {
                 input.consume();
@@ -64,8 +65,8 @@ public class SymbolRiddle_TreeParserLexer extends Lexer {
         try {
             int _type = ADD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\SymbolRiddle_TreeParser.g:26:5: ( '+' )
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\SymbolRiddle_TreeParser.g:26:7: '+'
+            // C:\\Projects\\CIP\\Aufgabe3\\SymbolRiddle_AST.g:41:5: ( '+' )
+            // C:\\Projects\\CIP\\Aufgabe3\\SymbolRiddle_AST.g:41:7: '+'
             {
             match('+'); 
 
@@ -85,8 +86,8 @@ public class SymbolRiddle_TreeParserLexer extends Lexer {
         try {
             int _type = SUB;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\SymbolRiddle_TreeParser.g:27:5: ( '-' )
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\SymbolRiddle_TreeParser.g:27:7: '-'
+            // C:\\Projects\\CIP\\Aufgabe3\\SymbolRiddle_AST.g:42:5: ( '-' )
+            // C:\\Projects\\CIP\\Aufgabe3\\SymbolRiddle_AST.g:42:7: '-'
             {
             match('-'); 
 
@@ -106,8 +107,8 @@ public class SymbolRiddle_TreeParserLexer extends Lexer {
         try {
             int _type = EQL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\SymbolRiddle_TreeParser.g:28:5: ( '=' )
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\SymbolRiddle_TreeParser.g:28:7: '='
+            // C:\\Projects\\CIP\\Aufgabe3\\SymbolRiddle_AST.g:43:5: ( '=' )
+            // C:\\Projects\\CIP\\Aufgabe3\\SymbolRiddle_AST.g:43:7: '='
             {
             match('='); 
 
@@ -127,10 +128,10 @@ public class SymbolRiddle_TreeParserLexer extends Lexer {
         try {
             int _type = NEWLINE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\SymbolRiddle_TreeParser.g:29:8: ( ( '\\r' )? '\\n' )
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\SymbolRiddle_TreeParser.g:29:10: ( '\\r' )? '\\n'
+            // C:\\Projects\\CIP\\Aufgabe3\\SymbolRiddle_AST.g:44:8: ( ( '\\r' )? '\\n' )
+            // C:\\Projects\\CIP\\Aufgabe3\\SymbolRiddle_AST.g:44:10: ( '\\r' )? '\\n'
             {
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\SymbolRiddle_TreeParser.g:29:10: ( '\\r' )?
+            // C:\\Projects\\CIP\\Aufgabe3\\SymbolRiddle_AST.g:44:10: ( '\\r' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -139,7 +140,7 @@ public class SymbolRiddle_TreeParserLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\SymbolRiddle_TreeParser.g:29:10: '\\r'
+                    // C:\\Projects\\CIP\\Aufgabe3\\SymbolRiddle_AST.g:44:10: '\\r'
                     {
                     match('\r'); 
 
@@ -163,7 +164,7 @@ public class SymbolRiddle_TreeParserLexer extends Lexer {
     // $ANTLR end "NEWLINE"
 
     public void mTokens() throws RecognitionException {
-        // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\SymbolRiddle_TreeParser.g:1:8: ( LETTER | ADD | SUB | EQL | NEWLINE )
+        // C:\\Projects\\CIP\\Aufgabe3\\SymbolRiddle_AST.g:1:8: ( LETTER | ADD | SUB | EQL | NEWLINE )
         int alt2=5;
         switch ( input.LA(1) ) {
         case 'A':
@@ -227,7 +228,7 @@ public class SymbolRiddle_TreeParserLexer extends Lexer {
 
         switch (alt2) {
             case 1 :
-                // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\SymbolRiddle_TreeParser.g:1:10: LETTER
+                // C:\\Projects\\CIP\\Aufgabe3\\SymbolRiddle_AST.g:1:10: LETTER
                 {
                 mLETTER(); 
 
@@ -235,7 +236,7 @@ public class SymbolRiddle_TreeParserLexer extends Lexer {
                 }
                 break;
             case 2 :
-                // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\SymbolRiddle_TreeParser.g:1:17: ADD
+                // C:\\Projects\\CIP\\Aufgabe3\\SymbolRiddle_AST.g:1:17: ADD
                 {
                 mADD(); 
 
@@ -243,7 +244,7 @@ public class SymbolRiddle_TreeParserLexer extends Lexer {
                 }
                 break;
             case 3 :
-                // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\SymbolRiddle_TreeParser.g:1:21: SUB
+                // C:\\Projects\\CIP\\Aufgabe3\\SymbolRiddle_AST.g:1:21: SUB
                 {
                 mSUB(); 
 
@@ -251,7 +252,7 @@ public class SymbolRiddle_TreeParserLexer extends Lexer {
                 }
                 break;
             case 4 :
-                // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\SymbolRiddle_TreeParser.g:1:25: EQL
+                // C:\\Projects\\CIP\\Aufgabe3\\SymbolRiddle_AST.g:1:25: EQL
                 {
                 mEQL(); 
 
@@ -259,7 +260,7 @@ public class SymbolRiddle_TreeParserLexer extends Lexer {
                 }
                 break;
             case 5 :
-                // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\SymbolRiddle_TreeParser.g:1:29: NEWLINE
+                // C:\\Projects\\CIP\\Aufgabe3\\SymbolRiddle_AST.g:1:29: NEWLINE
                 {
                 mNEWLINE(); 
 

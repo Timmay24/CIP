@@ -1,5 +1,5 @@
-ABC + NNN = KKL
-+ + +
-KOK + KOK = SSS
-===
-ZGT + NFS = VBD
+ABC + DDE =  FCF  
++     -      + 
+CB + BGE =  BCA  
+=     =      = 
+AEE + CBG = DGA
