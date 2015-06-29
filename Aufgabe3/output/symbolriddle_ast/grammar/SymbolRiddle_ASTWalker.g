@@ -1,9 +1,9 @@
 tree grammar SymbolRiddle_ASTWalker;
 
 options {
+    output=AST;
     tokenVocab=SymbolRiddle_AST;
     ASTLabelType=CommonTree;
-    output=AST;
 }
 
 // package for walker
@@ -17,12 +17,10 @@ prog	:   	symbolRiddle;
 symbolRiddle
 	:	problem problem problem problem problem problem;
 		   
+
+problem
+	:	^(EQL ^(ADD number number) number) |
+		^(EQL ^(SUB t1= number t2=number) t3=number) -> ^(EQL ^(ADD["+"] $t2 $t3) $t1);
+	
 number
 	:	^(NUMBER LETTER+) ;
-problem
-	:	^(EQL ^(ADD t1 t2) t3) |
-		^(EQL ^(SUB t1 t2) t3) -> ^(EQL ^(ADD["+"] t2 t3) t1);
-	
-t1	:	number;
-t2	:	number;
-t3	:	number;

@@ -1,0 +1,57 @@
+group template;
+
+prog(symbols, constraints) ::= <<
+/Package
+package symbolpuzzle.implementation;
+
+//Choco Constraint Solver
+import choco.Choco;
+import choco.Options;
+import choco.cp.model.CPModel;
+import choco.cp.solver.CPSolver;
+import choco.kernel.model.Model;
+import choco.kernel.model.variables.integer.IntegerExpressionVariable;
+import choco.kernel.model.variables.integer.IntegerVariable;
+import choco.kernel.solver.Solver;
+
+public class Prog {
+
+  private static final IntegerVariable ZERO = Choco.constant(0);
+
+  /**
+   * Loesen des Zahlenraetsels
+   */
+  public static void solve() {
+    // Build model
+    Model model = new CPModel();
+    
+    // Declare every letter as a variable
+    <symbols:{symbol| IntegerVariable <symbol> = Choco.makeIntVar("<symbol>", 0, 9, Options.V_ENUM); <\n>} >    
+    // Add constraint by term
+    IntegerExpressionVariable carry = ZERO;
+    <constraints; separator="\n">
+    
+    // Add constraint of all different letters  
+    model.addConstraint(Choco.allDifferent(<symbols; separator=", ">));    
+    
+    // Build a solver, read the model and solve it
+    Solver s = new CPSolver();
+    s.read(model);
+    s.solve();
+    
+    // Print symbol values
+    System.out.println(<symbols:{symbol| "<symbol> = " + s.getVar(<symbol>).getVal()}; separator=" + \", \" + ">);
+  }
+  
+}
+>>
+
+
+constraint(number1, number2, number3) ::= <<
+<number1.CharactersReversed, number2.CharactersReversed, number3.CharactersReversed :
+  {n1, n2, n3 |
+carry = Choco.sum(<if(n1)><n1><else>ZERO<endif>, <if(n2)><n2><else>ZERO<endif>, Choco.div(carry, 10));
+model.addConstraint(Choco.eq(<if(n3)><n3><else>ZERO<endif>, Choco.mod(carry, 10)));}; separator="\n">
+
+carry = ZERO;
+>>

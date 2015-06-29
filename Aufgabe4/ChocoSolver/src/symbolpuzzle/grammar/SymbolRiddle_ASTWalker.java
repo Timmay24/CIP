@@ -1,5 +1,5 @@
-// $ANTLR 3.4 C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_ASTWalker.g 2015-06-28 13:17:57
-package symbolriddle_ast.grammar;
+// $ANTLR 3.4 C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_ASTWalker.g 2015-06-29 22:28:38
+package symbolpuzzle.grammar;
 
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.*;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 @SuppressWarnings({"all", "warnings", "unchecked"})
 public class SymbolRiddle_ASTWalker extends TreeParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "ADD", "EQL", "LETTER", "NEWLINE", "NUMBER", "SUB", "WS"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "ADD", "EQL", "LETTER", "NEWLINE", "NUMBER", "PUZZLE", "SUB", "WS"
     };
 
     public static final int EOF=-1;
@@ -20,8 +20,9 @@ public class SymbolRiddle_ASTWalker extends TreeParser {
     public static final int LETTER=6;
     public static final int NEWLINE=7;
     public static final int NUMBER=8;
-    public static final int SUB=9;
-    public static final int WS=10;
+    public static final int PUZZLE=9;
+    public static final int SUB=10;
+    public static final int WS=11;
 
     // delegates
     public TreeParser[] getDelegates() {
@@ -47,7 +48,7 @@ public TreeAdaptor getTreeAdaptor() {
     return adaptor;
 }
     public String[] getTokenNames() { return SymbolRiddle_ASTWalker.tokenNames; }
-    public String getGrammarFileName() { return "C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_ASTWalker.g"; }
+    public String getGrammarFileName() { return "C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_ASTWalker.g"; }
 
 
     public static class prog_return extends TreeRuleReturnScope {
@@ -57,7 +58,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "prog"
-    // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_ASTWalker.g:13:1: prog : symbolRiddle ;
+    // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_ASTWalker.g:13:1: prog : symbolRiddle ;
     public final SymbolRiddle_ASTWalker.prog_return prog() throws RecognitionException {
         SymbolRiddle_ASTWalker.prog_return retval = new SymbolRiddle_ASTWalker.prog_return();
         retval.start = input.LT(1);
@@ -73,8 +74,8 @@ public TreeAdaptor getTreeAdaptor() {
 
 
         try {
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_ASTWalker.g:13:6: ( symbolRiddle )
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_ASTWalker.g:13:11: symbolRiddle
+            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_ASTWalker.g:13:6: ( symbolRiddle )
+            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_ASTWalker.g:13:11: symbolRiddle
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -113,7 +114,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "symbolRiddle"
-    // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_ASTWalker.g:17:1: symbolRiddle : problem problem problem problem problem problem ;
+    // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_ASTWalker.g:17:1: symbolRiddle : problem problem problem problem problem problem ;
     public final SymbolRiddle_ASTWalker.symbolRiddle_return symbolRiddle() throws RecognitionException {
         SymbolRiddle_ASTWalker.symbolRiddle_return retval = new SymbolRiddle_ASTWalker.symbolRiddle_return();
         retval.start = input.LT(1);
@@ -139,8 +140,8 @@ public TreeAdaptor getTreeAdaptor() {
 
 
         try {
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_ASTWalker.g:18:2: ( problem problem problem problem problem problem )
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_ASTWalker.g:18:4: problem problem problem problem problem problem
+            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_ASTWalker.g:18:2: ( problem problem problem problem problem problem )
+            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_ASTWalker.g:18:4: problem problem problem problem problem problem
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -224,7 +225,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "problem"
-    // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_ASTWalker.g:21:1: problem : ( ^( EQL ^( ADD number number ) number ) | ^( EQL ^( SUB t1= number t2= number ) t3= number ) -> ^( EQL ^( ADD[\"+\"] $t2 $t3) $t1) );
+    // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_ASTWalker.g:21:1: problem : ( ^( EQL ^( ADD number number ) number ) | ^( EQL ^( SUB t1= number t2= number ) t3= number ) -> ^( EQL ^( ADD[\"+\"] $t2 $t3) $t1) );
     public final SymbolRiddle_ASTWalker.problem_return problem() throws RecognitionException {
         SymbolRiddle_ASTWalker.problem_return retval = new SymbolRiddle_ASTWalker.problem_return();
         retval.start = input.LT(1);
@@ -260,7 +261,7 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleNodeStream stream_SUB=new RewriteRuleNodeStream(adaptor,"token SUB");
         RewriteRuleSubtreeStream stream_number=new RewriteRuleSubtreeStream(adaptor,"rule number");
         try {
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_ASTWalker.g:22:2: ( ^( EQL ^( ADD number number ) number ) | ^( EQL ^( SUB t1= number t2= number ) t3= number ) -> ^( EQL ^( ADD[\"+\"] $t2 $t3) $t1) )
+            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_ASTWalker.g:22:2: ( ^( EQL ^( ADD number number ) number ) | ^( EQL ^( SUB t1= number t2= number ) t3= number ) -> ^( EQL ^( ADD[\"+\"] $t2 $t3) $t1) )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -301,7 +302,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt1) {
                 case 1 :
-                    // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_ASTWalker.g:22:4: ^( EQL ^( ADD number number ) number )
+                    // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_ASTWalker.g:22:4: ^( EQL ^( ADD number number ) number )
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -376,7 +377,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_ASTWalker.g:23:3: ^( EQL ^( SUB t1= number t2= number ) t3= number )
+                    // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_ASTWalker.g:23:3: ^( EQL ^( SUB t1= number t2= number ) t3= number )
                     {
                     _last = (CommonTree)input.LT(1);
                     {
@@ -437,7 +438,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: t2, t1, EQL, t3
+                    // elements: EQL, t2, t1, t3
                     // token labels: 
                     // rule labels: t1, t2, retval, t3
                     // token list labels: 
@@ -452,14 +453,14 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (CommonTree)adaptor.nil();
                     // 23:48: -> ^( EQL ^( ADD[\"+\"] $t2 $t3) $t1)
                     {
-                        // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_ASTWalker.g:23:51: ^( EQL ^( ADD[\"+\"] $t2 $t3) $t1)
+                        // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_ASTWalker.g:23:51: ^( EQL ^( ADD[\"+\"] $t2 $t3) $t1)
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot(
                         stream_EQL.nextNode()
                         , root_1);
 
-                        // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_ASTWalker.g:23:57: ^( ADD[\"+\"] $t2 $t3)
+                        // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_ASTWalker.g:23:57: ^( ADD[\"+\"] $t2 $t3)
                         {
                         CommonTree root_2 = (CommonTree)adaptor.nil();
                         root_2 = (CommonTree)adaptor.becomeRoot(
@@ -510,7 +511,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "number"
-    // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_ASTWalker.g:25:1: number : ^( NUMBER ( LETTER )+ ) ;
+    // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_ASTWalker.g:25:1: number : ^( NUMBER ( LETTER )+ ) ;
     public final SymbolRiddle_ASTWalker.number_return number() throws RecognitionException {
         SymbolRiddle_ASTWalker.number_return retval = new SymbolRiddle_ASTWalker.number_return();
         retval.start = input.LT(1);
@@ -528,8 +529,8 @@ public TreeAdaptor getTreeAdaptor() {
         CommonTree LETTER16_tree=null;
 
         try {
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_ASTWalker.g:26:2: ( ^( NUMBER ( LETTER )+ ) )
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_ASTWalker.g:26:4: ^( NUMBER ( LETTER )+ )
+            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_ASTWalker.g:26:2: ( ^( NUMBER ( LETTER )+ ) )
+            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_ASTWalker.g:26:4: ^( NUMBER ( LETTER )+ )
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -548,7 +549,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             match(input, Token.DOWN, null); 
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_ASTWalker.g:26:13: ( LETTER )+
+            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_ASTWalker.g:26:13: ( LETTER )+
             int cnt2=0;
             loop2:
             do {
@@ -562,7 +563,7 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt2) {
             	case 1 :
-            	    // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_ASTWalker.g:26:13: LETTER
+            	    // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_ASTWalker.g:26:13: LETTER
             	    {
             	    _last = (CommonTree)input.LT(1);
             	    LETTER16=(CommonTree)match(input,LETTER,FOLLOW_LETTER_in_number161); 

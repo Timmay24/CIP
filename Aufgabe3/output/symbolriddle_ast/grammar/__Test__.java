@@ -1,4 +1,4 @@
-package symbolriddle_ast;
+package symbolriddle_ast.grammar;
 
 import java.io.*;
 import org.antlr.runtime.*;
@@ -11,7 +11,7 @@ import symbolriddle_ast.grammar.*;
 public class __Test__ {
 
     public static void main(String args[]) throws Exception {
-        SymbolRiddle_ASTLexer lex = new SymbolRiddle_ASTLexer(new ANTLRFileStream("__Test___input.txt", "UTF8"));
+        SymbolRiddle_ASTLexer lex = new SymbolRiddle_ASTLexer(new ANTLRFileStream("C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\SymbolRiddle.txt", "UTF8"));
         CommonTokenStream tokens = new CommonTokenStream(lex);
 
         SymbolRiddle_ASTParser parser = new SymbolRiddle_ASTParser(tokens);

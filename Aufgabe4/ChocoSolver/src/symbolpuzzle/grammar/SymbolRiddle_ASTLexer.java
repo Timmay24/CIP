@@ -1,5 +1,5 @@
-// $ANTLR 3.4 C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_AST.g 2015-06-28 13:16:44
-package symbolriddle_ast.grammar;
+// $ANTLR 3.4 C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_AST.g 2015-06-28 19:06:32
+package symbolpuzzle.grammar;
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -14,8 +14,9 @@ public class SymbolRiddle_ASTLexer extends Lexer {
     public static final int LETTER=6;
     public static final int NEWLINE=7;
     public static final int NUMBER=8;
-    public static final int SUB=9;
-    public static final int WS=10;
+    public static final int PUZZLE=9;
+    public static final int SUB=10;
+    public static final int WS=11;
 
     // delegates
     // delegators
@@ -30,15 +31,15 @@ public class SymbolRiddle_ASTLexer extends Lexer {
     public SymbolRiddle_ASTLexer(CharStream input, RecognizerSharedState state) {
         super(input,state);
     }
-    public String getGrammarFileName() { return "C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_AST.g"; }
+    public String getGrammarFileName() { return "C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_AST.g"; }
 
     // $ANTLR start "WS"
     public final void mWS() throws RecognitionException {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_AST.g:40:5: ( ( ' ' | '\\t' ) )
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_AST.g:40:9: ( ' ' | '\\t' )
+            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_AST.g:41:5: ( ( ' ' | '\\t' ) )
+            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_AST.g:41:9: ( ' ' | '\\t' )
             {
             if ( input.LA(1)=='\t'||input.LA(1)==' ' ) {
                 input.consume();
@@ -68,8 +69,8 @@ public class SymbolRiddle_ASTLexer extends Lexer {
         try {
             int _type = LETTER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_AST.g:46:8: ( ( 'A' .. 'Z' ) )
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_AST.g:
+            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_AST.g:47:8: ( ( 'A' .. 'Z' ) )
+            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_AST.g:
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z') ) {
                 input.consume();
@@ -97,8 +98,8 @@ public class SymbolRiddle_ASTLexer extends Lexer {
         try {
             int _type = ADD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_AST.g:47:5: ( '+' )
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_AST.g:47:7: '+'
+            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_AST.g:48:5: ( '+' )
+            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_AST.g:48:7: '+'
             {
             match('+'); 
 
@@ -118,8 +119,8 @@ public class SymbolRiddle_ASTLexer extends Lexer {
         try {
             int _type = SUB;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_AST.g:48:5: ( '-' )
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_AST.g:48:7: '-'
+            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_AST.g:49:5: ( '-' )
+            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_AST.g:49:7: '-'
             {
             match('-'); 
 
@@ -139,8 +140,8 @@ public class SymbolRiddle_ASTLexer extends Lexer {
         try {
             int _type = EQL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_AST.g:49:5: ( '=' )
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_AST.g:49:7: '='
+            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_AST.g:50:5: ( '=' )
+            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_AST.g:50:7: '='
             {
             match('='); 
 
@@ -160,10 +161,10 @@ public class SymbolRiddle_ASTLexer extends Lexer {
         try {
             int _type = NEWLINE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_AST.g:50:8: ( ( '\\r' )? '\\n' )
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_AST.g:50:10: ( '\\r' )? '\\n'
+            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_AST.g:51:8: ( ( '\\r' )? '\\n' )
+            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_AST.g:51:10: ( '\\r' )? '\\n'
             {
-            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_AST.g:50:10: ( '\\r' )?
+            // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_AST.g:51:10: ( '\\r' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -172,7 +173,7 @@ public class SymbolRiddle_ASTLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_AST.g:50:10: '\\r'
+                    // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_AST.g:51:10: '\\r'
                     {
                     match('\r'); 
 
@@ -196,7 +197,7 @@ public class SymbolRiddle_ASTLexer extends Lexer {
     // $ANTLR end "NEWLINE"
 
     public void mTokens() throws RecognitionException {
-        // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_AST.g:1:8: ( WS | LETTER | ADD | SUB | EQL | NEWLINE )
+        // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_AST.g:1:8: ( WS | LETTER | ADD | SUB | EQL | NEWLINE )
         int alt2=6;
         switch ( input.LA(1) ) {
         case '\t':
@@ -266,7 +267,7 @@ public class SymbolRiddle_ASTLexer extends Lexer {
 
         switch (alt2) {
             case 1 :
-                // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_AST.g:1:10: WS
+                // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_AST.g:1:10: WS
                 {
                 mWS(); 
 
@@ -274,7 +275,7 @@ public class SymbolRiddle_ASTLexer extends Lexer {
                 }
                 break;
             case 2 :
-                // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_AST.g:1:13: LETTER
+                // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_AST.g:1:13: LETTER
                 {
                 mLETTER(); 
 
@@ -282,7 +283,7 @@ public class SymbolRiddle_ASTLexer extends Lexer {
                 }
                 break;
             case 3 :
-                // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_AST.g:1:20: ADD
+                // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_AST.g:1:20: ADD
                 {
                 mADD(); 
 
@@ -290,7 +291,7 @@ public class SymbolRiddle_ASTLexer extends Lexer {
                 }
                 break;
             case 4 :
-                // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_AST.g:1:24: SUB
+                // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_AST.g:1:24: SUB
                 {
                 mSUB(); 
 
@@ -298,7 +299,7 @@ public class SymbolRiddle_ASTLexer extends Lexer {
                 }
                 break;
             case 5 :
-                // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_AST.g:1:28: EQL
+                // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_AST.g:1:28: EQL
                 {
                 mEQL(); 
 
@@ -306,7 +307,7 @@ public class SymbolRiddle_ASTLexer extends Lexer {
                 }
                 break;
             case 6 :
-                // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe3\\output\\symbolriddle_ast\\grammar\\SymbolRiddle_AST.g:1:32: NEWLINE
+                // C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolRiddle_AST.g:1:32: NEWLINE
                 {
                 mNEWLINE(); 
 

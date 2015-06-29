@@ -1,0 +1,5 @@
+GCA-BCC=EKI
++++
+GGC-FAA=BGC
+===
+BCIC-GCC=GGA
