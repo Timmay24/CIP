@@ -13,6 +13,7 @@ import choco.kernel.model.Model;
 import choco.kernel.model.variables.integer.IntegerExpressionVariable;
 import choco.kernel.model.variables.integer.IntegerVariable;
 import choco.kernel.solver.Solver;
+import static choco.Choco.makeIntVar;
 
 public class Prog {
 
@@ -29,6 +30,7 @@ public class Prog {
     <symbols:{symbol| IntegerVariable <symbol> = Choco.makeIntVar("<symbol>", 0, 9, Options.V_ENUM); <\n>} >    
     // Add constraint by term
     IntegerExpressionVariable carry = ZERO;
+   // IntegerVariable carry = makeIntVar("carry", 0, 0, Options.V_ENUM);
     <constraints; separator="\n">
     
     // Add constraint of all different letters  
@@ -47,6 +49,17 @@ public class Prog {
 >>
 
 
+//constraint(number1, number2, number3) ::= <<
+//<number1.CharactersReversed, number2.CharactersReversed, number3.CharactersReversed :
+//  {n1, n2, n3 |
+//carry = Choco.sum(<if(n1)><n1><else>ZERO<endif>, <if(n2)><n2><else>ZERO<endif>, Choco.div(carry, 10));
+//model.addConstraint(Choco.eq(<if(n3)><n3><else>ZERO<endif>, Choco.mod(carry, 10)));}; separator="\n">
+//
+//carry = ZERO;
+//>>
+
+
+
 constraint(number1, number2, number3) ::= <<
 <number1.CharactersReversed, number2.CharactersReversed, number3.CharactersReversed :
   {n1, n2, n3 |
@@ -55,3 +68,5 @@ model.addConstraint(Choco.eq(<if(n3)><n3><else>ZERO<endif>, Choco.mod(carry, 10)
 
 carry = ZERO;
 >>
+
+

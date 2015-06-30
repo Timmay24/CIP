@@ -13,6 +13,7 @@ import choco.kernel.model.Model;
 import choco.kernel.model.variables.integer.IntegerExpressionVariable;
 import choco.kernel.model.variables.integer.IntegerVariable;
 import choco.kernel.solver.Solver;
+import static choco.Choco.makeIntVar;
 
 public class Prog {
 
@@ -47,6 +48,7 @@ public class Prog {
 >>
 
 
+
 constraint(number1, number2, number3) ::= <<
 <number1.CharactersReversed, number2.CharactersReversed, number3.CharactersReversed :
   {n1, n2, n3 |
@@ -55,3 +57,5 @@ model.addConstraint(Choco.eq(<if(n3)><n3><else>ZERO<endif>, Choco.mod(carry, 10)
 
 carry = ZERO;
 >>
+
+

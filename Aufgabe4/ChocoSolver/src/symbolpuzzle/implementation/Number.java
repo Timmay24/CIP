@@ -31,7 +31,7 @@ public class Number {
 
 	public List<Character> getCharactersReversed() {
 		List<Character> numbers = this.getCharacters();
-//		Collections.reverse(numbers);
+		Collections.reverse(numbers);
 		return numbers;
 	}
 
