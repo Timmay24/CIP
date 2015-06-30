@@ -1,7 +1,7 @@
 group template;
 
 prog(symbols, constraints) ::= <<
-/Package
+//Package
 package symbolpuzzle.implementation;
 
 //Choco Constraint Solver
@@ -13,11 +13,15 @@ import choco.kernel.model.Model;
 import choco.kernel.model.variables.integer.IntegerExpressionVariable;
 import choco.kernel.model.variables.integer.IntegerVariable;
 import choco.kernel.solver.Solver;
-import static choco.Choco.makeIntVar;
 
 public class Prog {
 
   private static final IntegerVariable ZERO = Choco.constant(0);
+
+
+  public static void main(String[] args){
+    solve();
+  }
 
   /**
    * Loesen des Zahlenraetsels
@@ -41,12 +45,11 @@ public class Prog {
     s.solve();
     
     // Print symbol values
-    System.out.println(<symbols:{symbol| "<symbol> = " + s.getVar(<symbol>).getVal()}; separator=" + \", \" + ">);
+    System.out.println(<symbols:{symbol| "<symbol> = " + s.getVar(<symbol>).getVal()}; separator=" + \", \" + \"\\n\" + ">);
   }
-  
+
 }
 >>
-
 
 
 constraint(number1, number2, number3) ::= <<
@@ -57,5 +60,3 @@ model.addConstraint(Choco.eq(<if(n3)><n3><else>ZERO<endif>, Choco.mod(carry, 10)
 
 carry = ZERO;
 >>
-
-

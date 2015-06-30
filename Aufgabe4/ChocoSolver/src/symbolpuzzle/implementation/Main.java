@@ -11,24 +11,17 @@ import symbolpuzzle.grammar.SymbolRiddle_ASTParser;
 import symbolpuzzle.grammar.SymbolRiddle_ASTWalker;
 import symbolpuzzle.grammar.SymbolraetselEmitter;
 
-import java.io.FileReader;
-import java.io.IOException;
+import javax.swing.*;
+import java.io.*;
 
 public class Main {
 	private static final String TEMPLATE_FILE = "src/symbolpuzzle/implementation/template.stg";
+	private static final File FILE = new File("src/symbolpuzzle/implementation/Prog.java");
 
 	public static void main(String[] args) throws RecognitionException, IOException {
 		SymbolRiddle_ASTLexer lex = new SymbolRiddle_ASTLexer(new ANTLRFileStream("src/symbolpuzzle/SymbolRiddle.txt", "UTF8"));
 		CommonTokenStream tokens = new CommonTokenStream(lex);
 		SymbolRiddle_ASTParser parser = new SymbolRiddle_ASTParser(tokens);
-
-//		CommonTree puzzleTree = (CommonTree) parser.prog().getTree();
-//
-//		// Walk Result Tree
-//		CommonTreeNodeStream nodes = new CommonTreeNodeStream(puzzleTree);
-//		SymbolRiddle_ASTWalker walker = new SymbolRiddle_ASTWalker(nodes);
-//		SymbolRiddle_ASTWalker.prog_return walkerRes = walker.prog();
-//		CommonTree walkerTree = (CommonTree) walkerRes.getTree();
 
 		SymbolRiddle_ASTParser.prog_return r = parser.prog();
 		CommonTreeNodeStream nodes = new CommonTreeNodeStream(r.getTree());
@@ -46,8 +39,6 @@ public class Main {
 //		InputStream templateIs = Main.class.getClassLoader()
 //				.getResourceAsStream(TEMPLATE_FILE);
 
-
-
 		FileReader templateIs = new FileReader(TEMPLATE_FILE);
 //		System.out.println("INputStream " + templateIs);
 //		StringTemplateGroup templates = new StringTemplateGroup(
@@ -57,19 +48,29 @@ public class Main {
 		emitter.setTemplateLib(templates);
 		SymbolraetselEmitter.prog_return puzzle_return = emitter.prog();
 		String output = puzzle_return.getTemplate().toString();
-		System.out.println("\n\nausgabe");
-		System.out.println(output);
+//		System.out.println(output);
 
 		writeToFile(output);
-
-		Prog.solve();
 
 
 
 	}
 
 	private static void writeToFile(String output) {
-		
+		try{
+			if (!FILE.exists()) {
+				FILE.createNewFile();
+			}
+
+			FileWriter file =  new FileWriter(FILE, false);
+			BufferedWriter bw = new BufferedWriter(file);
+			bw.write(output);
+			bw.close();
+
+		} catch (IOException e) {
+			System.err.println("write to file did not work");
+			System.out.println(e);
+		}
 	}
 
 }

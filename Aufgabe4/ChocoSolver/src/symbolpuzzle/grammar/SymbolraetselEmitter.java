@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Users\\Louisa\\Documents\\GitHub\\CIP\\Aufgabe4\\ChocoSolver\\src\\symbolpuzzle\\grammar\\SymbolraetselEmitter.g 2015-06-29 22:28:11
+
 
 package symbolpuzzle.grammar;
 
